@@ -4,7 +4,9 @@ const Ride = require('../models/ride')
 const getAllParks = async (req, res) => {
   try {
     const parks = await Park.find({})
+
     res.status(200).json(parks)
+
   } catch (error) {
     res.status(500).json({ error: error.message })
   }
