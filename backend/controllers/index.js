@@ -63,11 +63,33 @@ const deleteRide = async (req, res) => {
   }
 }
 
+const createPark = async (req, res) => {
+  try {
+    const park = await new Park(req.body)
+    await park.save()
+    res.status(200).json({ park })
+  } catch (error) {
+    res.status(500).json({ error: error.message })
+  }
+}
+
+const createRide = async (req, res) => {
+  try {
+    const ride = await new Ride(req.body)
+    await ride.save()
+    res.status(200).json({ ride })
+  } catch (error) {
+    res.status(500).json({ error: error.message })
+  }
+}
+
 module.exports = {
   getAllParks,
   getAllRides,
   getParkById,
   getRideById,
   deletePark,
-  deleteRide
+  deleteRide,
+  createPark,
+  createRide
 }
