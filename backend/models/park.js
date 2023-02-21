@@ -7,8 +7,7 @@ const Park = new Schema(
     name: { type: String, required: true },
     location: { type: String, required: false },
     dateClosed: { type: String, required: true },
-    capacity: { type: String, required: false },
-    description: { type: Number, required: false }
+    description: { type: String, required: false }
   },
   { timestamps: true }
 )
