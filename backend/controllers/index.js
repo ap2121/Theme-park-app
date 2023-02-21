@@ -4,7 +4,9 @@ const Ride = require('../models/ride')
 const getAllParks = async (req, res) => {
   try {
     const parks = await Park.find({})
-    res.status(200).json({parks})
+
+    res.status(200).json(parks)
+
   } catch (error) {
     res.status(500).json({ error: error.message })
   }
@@ -13,7 +15,7 @@ const getAllParks = async (req, res) => {
 const getParkById = async (req, res) => {
   try {
     const parks = await Park.findById()
-    res.status(200).json({ parks })
+    res.status(200).json(parks)
   } catch (error) {
     res.status(500).json({ error: error.message })
   }
@@ -22,7 +24,7 @@ const getParkById = async (req, res) => {
 const getAllRides = async (req, res) => {
   try {
     const rides = await Ride.find({})
-    return res.status(200).json({ rides })
+    return res.status(200).json(rides)
   } catch (error) {
     return res.status(500).json({ error: error.message })
   }
@@ -31,7 +33,7 @@ const getAllRides = async (req, res) => {
 const getRideById = async (req, res) => {
   try {
     const rides = await Ride.findById()
-    res.status(200).json({ rides })
+    res.status(200).json(rides)
   } catch (error) {
     res.status(500).json({ error: error.message })
   }
@@ -67,7 +69,7 @@ const createPark = async (req, res) => {
   try {
     const park = await new Park(req.body)
     await park.save()
-    res.status(200).json({ park })
+    res.status(200).json(park)
   } catch (error) {
     res.status(500).json({ error: error.message })
   }
@@ -77,7 +79,7 @@ const createRide = async (req, res) => {
   try {
     const ride = await new Ride(req.body)
     await ride.save()
-    res.status(200).json({ ride })
+    res.status(200).json(ride)
   } catch (error) {
     res.status(500).json({ error: error.message })
   }
