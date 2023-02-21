@@ -87,6 +87,16 @@ const createRide = async (req, res) => {
   }
 }
 
+const getRideByParkId = async (req, res) => {
+  try {
+    const { id } = req.params
+    const rides = await Ride.find({ parkId: id })
+    res.status(200).json(rides)
+  } catch (error) {
+    res.status(500).json({ error: error.message })
+  }
+}
+
 module.exports = {
   getAllParks,
   getAllRides,
@@ -95,5 +105,6 @@ module.exports = {
   deletePark,
   deleteRide,
   createPark,
-  createRide
+  createRide,
+  getRideByParkId
 }
