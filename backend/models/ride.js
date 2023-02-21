@@ -6,7 +6,7 @@ const Ride = new Schema(
     parkId: { type: Schema.Types.ObjectId, ref: 'Ride' },
     image: { type: String, required: false },
     name: { type: String, required: true },
-    description: { type: Number, required: false }
+    description: { type: String, required: false }
   },
   { timestamps: true }
 )
