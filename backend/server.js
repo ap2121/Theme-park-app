@@ -1,6 +1,6 @@
-require('dotenv').config()
+
 const express = require('express')
-const mongoose = require('mongoose')
+const db = require('./db')
 const cors = require('cors')
 const logger = require('morgan')
 const PORT = process.env.PORT || 3001
@@ -13,13 +13,6 @@ app.use(express.json())
 app.use(express.urlencoded({ extended: false }))
 app.use(logger('dev'))
 
-mongoose
-  .connect(process.env.MONGO_URI)
-  .then(() => {
-    app.listen(PORT, () => {
-      console.log(`Connected to db and listening on port ${PORT}`)
-    })
-  })
-  .catch((error) => {
-    console.log(error)
-  })
+app.listen(PORT, () => {
+    console.log(`Server listening on port ${PORT}`)
+})
