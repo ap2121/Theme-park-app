@@ -57,11 +57,11 @@ const deletePark = async (req, res) => {
 const deleteRide = async (req, res) => {
   try {
     const { id } = req.params
-    const deleted = await Park.findByIdAndDelete(id)
+    const deleted = await Ride.findByIdAndDelete(id)
     if (deleted) {
       res.status(200).send('Ride Out of Order')
     }
-    throw new Error('Huh?  There is no such ride...')
+    // throw new Error('Huh?  There is no such ride...')
   } catch (error) {
     res.status(500).json({ error: error.message })
   }
