@@ -4,9 +4,18 @@ const Ride = require('../models/ride')
 const getAllParks = async (req, res) => {
   try {
     const parks = await Park.find({})
-    return res.status(200).json({ parks })
+    res.status(200).json({ parks })
   } catch (error) {
-    return res.status(500).json({ error: error.message })
+    res.status(500).json({ error: error.message })
+  }
+}
+
+const getParkById = async (req, res) => {
+  try {
+    const parks = await Park.findById()
+    res.status(200).json({ parks })
+  } catch (error) {
+    res.status(500).json({ error: error.message })
   }
 }
 
@@ -19,6 +28,18 @@ const getAllRides = async (req, res) => {
   }
 }
 
+const getRideById = async (req, res) => {
+  try {
+    const rides = await Ride.findById()
+    res.status(200).json({ rides })
+  } catch (error) {
+    res.status(500).json({ error: error.message })
+  }
+}
+
 module.exports = {
-  getAllParks
+  getAllParks,
+  getAllRides,
+  getParkById,
+  getRideById
 }
