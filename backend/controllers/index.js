@@ -3,10 +3,8 @@ const Ride = require('../models/ride')
 
 const getAllParks = async (req, res) => {
   try {
-    const parks = await Park.find({})
-
+    const parks = await Park.find()
     res.status(200).json(parks)
-
   } catch (error) {
     res.status(500).json({ error: error.message })
   }
@@ -14,8 +12,11 @@ const getAllParks = async (req, res) => {
 
 const getParkById = async (req, res) => {
   try {
-    const parks = await Park.findById()
-    res.status(200).json(parks)
+    const { id } = req.params
+    const park = await Park.findById(id)
+    if (park) {
+      res.status(200).json(park)
+    }
   } catch (error) {
     res.status(500).json({ error: error.message })
   }
@@ -23,7 +24,7 @@ const getParkById = async (req, res) => {
 
 const getAllRides = async (req, res) => {
   try {
-    const rides = await Ride.find({})
+    const rides = await Ride.find()
     return res.status(200).json(rides)
   } catch (error) {
     return res.status(500).json({ error: error.message })
@@ -32,8 +33,9 @@ const getAllRides = async (req, res) => {
 
 const getRideById = async (req, res) => {
   try {
-    const rides = await Ride.findById()
-    res.status(200).json(rides)
+    const { id } = req.params
+    const ride = await Ride.findById(id)
+    res.status(200).json(ride)
   } catch (error) {
     res.status(500).json({ error: error.message })
   }
@@ -41,8 +43,8 @@ const getRideById = async (req, res) => {
 
 const deletePark = async (req, res) => {
   try {
-    const { parkId } = req.params
-    const deleted = await Park.findByIdAndDelete(parkId)
+    const { id } = req.params
+    const deleted = await Park.findByIdAndDelete(id)
     if (deleted) {
       res.status(200).send('Park Closed')
     }
@@ -54,8 +56,8 @@ const deletePark = async (req, res) => {
 
 const deleteRide = async (req, res) => {
   try {
-    const { rideId } = req.params
-    const deleted = await Park.findByIdAndDelete(rideId)
+    const { id } = req.params
+    const deleted = await Park.findByIdAndDelete(id)
     if (deleted) {
       res.status(200).send('Ride Out of Order')
     }
