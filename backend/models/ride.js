@@ -3,7 +3,7 @@ const Schema = mongoose.Schema
 
 const Ride = new Schema(
   {
-    parkId: { type: Schema.Types.ObjectId, ref: 'Ride' },
+    parkId: { type: Schema.Types.ObjectId, ref: 'Park' },
     image: { type: String, required: false },
     name: { type: String, required: true },
     description: { type: String, required: false }
