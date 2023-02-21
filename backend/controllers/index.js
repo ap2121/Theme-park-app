@@ -37,9 +37,37 @@ const getRideById = async (req, res) => {
   }
 }
 
+const deletePark = async (req, res) => {
+  try {
+    const { parkId } = req.params
+    const deleted = await Park.findByIdAndDelete(parkId)
+    if (deleted) {
+      res.status(200).send('Park Closed')
+    }
+    throw new Error('Huh?  There is no such park...')
+  } catch (error) {
+    res.status(500).json({ error: error.message })
+  }
+}
+
+const deleteRide = async (req, res) => {
+  try {
+    const { rideId } = req.params
+    const deleted = await Park.findByIdAndDelete(rideId)
+    if (deleted) {
+      res.status(200).send('Ride Out of Order')
+    }
+    throw new Error('Huh?  There is no such ride...')
+  } catch (error) {
+    res.status(500).json({ error: error.message })
+  }
+}
+
 module.exports = {
   getAllParks,
   getAllRides,
   getParkById,
-  getRideById
+  getRideById,
+  deletePark,
+  deleteRide
 }
